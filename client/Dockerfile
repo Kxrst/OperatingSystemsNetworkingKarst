@@ -10,7 +10,7 @@ RUN apt install -y procps sudo man default-mysql-client iputils-ping traceroute
 RUN apt install -y openssh-server
 
 # Create directories (this is a fix for something that should happen automatically
-RUN mkdir /var/run/sshd && chmod 0755 /var/run/sshd
+RUN mkdir -p /var/run/sshd && chmod 0755 /var/run/sshd
 
 # Allow password login
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
