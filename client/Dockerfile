@@ -1,5 +1,6 @@
 FROM debian:latest
 
+
 # Update repositories
 RUN apt update
 
@@ -21,6 +22,9 @@ RUN echo "student:test1234" | chpasswd
 
 # Add user to the sudo-ers group so student-user can perform root operations
 RUN adduser student sudo
+
+# Disable SSL for mysql client
+COPY mariadb-client-no-ssl.conf /etc/mysql/conf.d/disable-ssl.cnf
 
 # Start SSH-server (-D prevents it from exiting immediately and thus keep the docker container running)
 ENTRYPOINT /usr/sbin/sshd -D
